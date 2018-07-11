@@ -51,14 +51,14 @@ class App extends Component {
     //   this.forceUpdate();
     // }
 
-    fetch(process.env.REACT_APP_API_URL + '/posts/all', {
+    fetch(process.env.REACT_APP_API_URL + '/posts', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     })
       .then(res => res.json())
       .then(posts => {
-        console.log(posts);
-        this.setState({ posts: posts.posts })
+        console.log(posts)
+        this.setState({ posts: posts })
       })
   }
 
@@ -74,7 +74,7 @@ class App extends Component {
             {
               this.state.posts.map(post => {
                 return (
-                  <div>{post}</div>
+                  <div>{post.message}</div>
                 )
               })
             }
