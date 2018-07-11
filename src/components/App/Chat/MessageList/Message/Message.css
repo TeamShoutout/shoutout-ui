@@ -1,0 +1,14 @@
+.Message {
+ line-height: 1.5em;
+}
+
+.Message .author {
+ font-weight: bold;
+ color: #777;
+ margin: 0 5px 0 0;
+}
+
+.Message .time {
+  color: #aaa;
+  font-size: .75em;
+}

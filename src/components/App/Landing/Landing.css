@@ -1,0 +1,17 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container-landing {
+  margin-top: 2rem;
+  padding-bottom: 150px;
+}
+
+@media (min-width: 768px) {
+  .container-landing {
+    margin-top: 5rem;
+  }
+}
