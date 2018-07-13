@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router';
+// import { Redirect, Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 // import Header from './Header/Header';
@@ -11,10 +11,11 @@ import './App.css';
 // import Discover from './Discover/Discover';
 // import Profile from './Profile/Profile';
 // import Chat from './Chat/Chat';
-import { Container } from 'semantic-ui-react';
+import { Card, Container, Grid, Image, Menu, } from 'semantic-ui-react';
 import store from '../../store';
 // import { fetchLoggedInUser } from '../../store/users/actions';
 // import { getAllPosts } from '../../store/posts/actions';
+import slackdown from 'slackdown';
 
 class App extends Component {
   constructor(props) {
@@ -57,7 +58,6 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(posts => {
-        console.log(posts)
         this.setState({ posts: posts })
       })
   }
@@ -70,14 +70,44 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Container className='App' fluid>
-            {
-              this.state.posts.map(post => {
-                return (
-                  <div>{post.message}</div>
-                )
-              })
-            }
+          <Container className='App' textAlign='left' style={{ marginTop: '2em', paddingBottom: '150px' }}>
+            <Menu size='small'>
+              <Menu.Item>
+                <Image
+                  size='mini'
+                  src='/images/logos/party-popper.png'
+                />
+              </Menu.Item>
+              <Menu.Item header>
+                BCGDV Shoutout
+              </Menu.Item>
+            </Menu>
+            <Grid style={{ marginTop: '1em' }}>
+              <Grid.Column width={16}>
+                <Card.Group>
+                  {
+                    this.state.posts.map(post => {
+                      return (
+                        <Card key={ post.id }>
+                          <Card.Content>
+                            <Card.Header>{ post.slackRecipientUsernames[0] }</Card.Header>
+                            <Card.Description dangerouslySetInnerHTML={{ __html: slackdown.parse(post.message) }}></Card.Description>
+                            <Card.Meta textAlign='right'>{ '- ' + post.slackSenderUsername }</Card.Meta>
+                          </Card.Content>
+                          <Card.Content extra>
+                            {
+                              post.categories.map(category => {
+                                return <div key={ category.id }>{ category }</div>
+                              })
+                            }
+                          </Card.Content>
+                        </Card>
+                      )
+                    })
+                  }
+                </Card.Group>
+              </Grid.Column>
+            </Grid>
             {/* { this.error ? <Redirect from='/' to='login' /> : '' } */}
             {/* <Header /> */}
             {/* <Switch>
