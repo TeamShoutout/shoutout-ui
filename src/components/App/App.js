@@ -5,12 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 // import Header from './Header/Header';
 import Shoutouts from './Shoutouts/Shoutouts'
-// import Signup from './Signup/Signup';
-// import Login from './Login/Login';
-// import Thanks from './Thanks/Thanks';
-// import Discover from './Discover/Discover';
-// import Profile from './Profile/Profile';
-// import Chat from './Chat/Chat';
+import Signup from './Signup/Signup';
 import store from '../../store'
 // import { fetchLoggedInUser } from '../../store/users/actions';
 // import { getAllPosts } from '../../store/posts/actions';
@@ -60,12 +55,7 @@ class App extends Component {
             <Switch>
               {/* <Route exact path='/' component={ Landing } /> */}
               <Route path='/shoutouts' component={ Shoutouts } />
-              {/* <Route path='/signup' component={Signup} />
-              <Route path='/login' component={Login} />
-              <Route path='/thanks' component={Thanks} />
-              <Route path='/discover' component={Discover} />
-              <Route path='/profile' component={Profile} />
-              <Route path='/chat' component={Chat} /> */}
+              <Route path='/signup' component={Signup} />
               <Route render={function () {
                 return <p>Not Found</p>
               }} />

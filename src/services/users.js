@@ -29,21 +29,18 @@ export function login(user) {
   });
 }
 
-export function signup(user, profileImage) {
-  try {
-    validateUser(user, 'signup');
-  } catch(err) {
-    return Promise.reject(err.message);
-  }
+export function signup(org) {
+  // try {
+  //   validateUser(user, 'signup');
+  // } catch(err) {
+  //   return Promise.reject(err.message);
+  // }
 
-  var formData  = new FormData();
-  formData.append('user', JSON.stringify(user));
-  formData.append('profile_image', profileImage);
-
-  return fetch(process.env.REACT_APP_API_URL + '/users', {
+  return fetch(process.env.REACT_APP_API_URL + '/orgs', {
     method: 'POST',
-    body: formData
-  });
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ org })
+  })
 }
 
 export function updateUser(user, profileImage) {
