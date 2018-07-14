@@ -90,9 +90,9 @@ class App extends Component {
                       return (
                         <Card key={ post.id }>
                           <Card.Content>
-                            <Card.Header>{ post.slackRecipientUsernames[0] }</Card.Header>
-                            <Card.Description dangerouslySetInnerHTML={{ __html: slackdown.parse(post.message) }}></Card.Description>
-                            <Card.Meta textAlign='right'>{ '- ' + post.slackSenderUsername }</Card.Meta>
+                            <Card.Header>{ post.slackRecipientRealName }</Card.Header>
+                            <Card.Description>{ post.message.replace(/\<.*?\>/g, post.slackRecipientRealName) }</Card.Description>
+                            <Card.Meta textAlign='right'>{ '- ' + post.slackSenderRealName }</Card.Meta>
                           </Card.Content>
                           <Card.Content extra>
                             {
