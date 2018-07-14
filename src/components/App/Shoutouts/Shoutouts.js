@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Container, Card, Grid, Image, Menu } from 'semantic-ui-react'
-import './Shoutouts.css';
+import './Shoutouts.css'
+import queryString from 'query-string'
 
 class Shoutouts extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class Shoutouts extends Component {
   }
 
   componentDidMount() {
-    fetch(process.env.REACT_APP_API_URL + '/posts', {
+    let urlParams = queryString.parse(this.props.location.search)
+
+    fetch(process.env.REACT_APP_API_URL + '/posts/?slackTeamId=' + urlParams.teamId, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     })

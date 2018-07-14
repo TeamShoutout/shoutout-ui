@@ -8,6 +8,7 @@
     "moment": "^2.20.1",
     "particlesjs": "^2.2.1",
     "prop-types": "^15.6.1",
+    "query-string": "^6.1.0",
     "react": "^16.2.0",
     "react-autobind": "^1.0.6",
     "react-datepicker": "^1.1.0",
