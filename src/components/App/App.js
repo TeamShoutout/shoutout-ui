@@ -96,9 +96,11 @@ class App extends Component {
                           </Card.Content>
                           <Card.Content extra>
                             {
-                              post.categories.map(category => {
-                                return <div key={ category.id }>{ category }</div>
-                              })
+                              post.categories ?
+                                post.categories.map(category => {
+                                  return <div key={ category.id }>{ category }</div>
+                                })
+                              : ''
                             }
                           </Card.Content>
                         </Card>
