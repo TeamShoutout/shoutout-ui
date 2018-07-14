@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-// import { Redirect, Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 // import Header from './Header/Header';
-// import Landing from './Landing/Landing';
+import Shoutouts from './Shoutouts/Shoutouts';
 // import Signup from './Signup/Signup';
 // import Login from './Login/Login';
 // import Thanks from './Thanks/Thanks';
@@ -51,80 +51,26 @@ class App extends Component {
     //   this.loading = false;
     //   this.forceUpdate();
     // }
-
-    fetch(process.env.REACT_APP_API_URL + '/posts', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(res => res.json())
-      .then(posts => {
-        this.setState({ posts: posts })
-      })
   }
 
   render() {
-    if (!this.state.posts) {
-      return null;
-    }
-
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Container className='App' textAlign='left' style={{ marginTop: '2em', paddingBottom: '150px' }}>
-            <Menu size='small'>
-              <Menu.Item>
-                <Image
-                  size='mini'
-                  src='/images/logos/party-popper.png'
-                />
-              </Menu.Item>
-              <Menu.Item header>
-                BCGDV Shoutout
-              </Menu.Item>
-            </Menu>
-            <Grid style={{ marginTop: '1em' }}>
-              <Grid.Column width={16}>
-                <Card.Group>
-                  {
-                    this.state.posts.map(post => {
-                      return (
-                        <Card key={ post.id }>
-                          <Card.Content>
-                            <Card.Header>{ post.slackRecipientRealName }</Card.Header>
-                            <Card.Description>{ post.message.replace(/\<.*?\>/g, post.slackRecipientRealName) }</Card.Description>
-                            <Card.Meta textAlign='right'>{ '- ' + post.slackSenderRealName }</Card.Meta>
-                          </Card.Content>
-                          <Card.Content extra>
-                            {
-                              post.categories ?
-                                post.categories.map(category => {
-                                  return <div key={ category.id }>{ category }</div>
-                                })
-                              : ''
-                            }
-                          </Card.Content>
-                        </Card>
-                      )
-                    })
-                  }
-                </Card.Group>
-              </Grid.Column>
-            </Grid>
             {/* { this.error ? <Redirect from='/' to='login' /> : '' } */}
             {/* <Header /> */}
-            {/* <Switch>
-              <Route exact path='/' component={Landing} />
-              <Route path='/signup' component={Signup} />
+            <Switch>
+              <Route exact path='/' component={ Shoutouts } />
+              {/* <Route path='/signup' component={Signup} />
               <Route path='/login' component={Login} />
               <Route path='/thanks' component={Thanks} />
               <Route path='/discover' component={Discover} />
               <Route path='/profile' component={Profile} />
-              <Route path='/chat' component={Chat} />
+              <Route path='/chat' component={Chat} /> */}
               <Route render={function () {
                 return <p>Not Found</p>
               }} />
-            </Switch> */}
-          </Container>
+            </Switch>
         </BrowserRouter>
       </Provider>
     );
